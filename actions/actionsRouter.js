@@ -28,12 +28,13 @@ router.get("/:id", (req, res) => {
 })
 
 //POST new action
-router.post("/", (req, res) => {
+router.post("/", validateById, (req, res) => {
     Actions.insert(req.body)
-    .then(() => {
-        res.status(201).json(req.body);
+    .then((action) => {
+        res.status(201).json(action);
     })
     .catch(err => {
+        console.log(err)
         res.status(500).json({ error: "Error creating new POST", err });
     })
 })
@@ -62,6 +63,21 @@ router.delete("/:id", (req, res) => {
         res.status(500).json({ error: "Error deleting action", err });
     })
 })
+
+//middleware
+function validateById(req, res, next) {
+    const { project_id } = req.body;
+    Actions.get(project_id)
+        .then(action => {
+            if (action) {
+                req.action = action;
+                next();
+            } else {
+                res.status(404).json({ error: "the specified action does not exist" })
+            }
+        })
+}
+
 
 
 module.exports = router;
