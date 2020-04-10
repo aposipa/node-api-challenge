@@ -40,13 +40,24 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+        -- it's a web framework
+        -- let's you structure a web aplication to handle multpiple different http requests
+
 - [ ] Describe Middleware?
+
+        -- functions that have access to the homies (req, res), and the next middleware function in the cycle by using next().
 
 - [ ] Describe a Resource?
 
+        -- provides a way to manage modules
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+        -- (200) or various (2--).
+
 - [ ] How can we partition our application into sub-applications?
+
+        --By using express
 
 ## Minimum Viable Product
 
